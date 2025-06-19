@@ -1,0 +1,99 @@
+/* Navigation-only Styles */
+
+/* Fixed Top Navigation */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #a6b1a6; /* boja pozadine u navigaciji */
+  color: #2b2929; /* boja teksta u lajsti*/
+  box-shadow: 0 2px 5px #c22d2d1a;
+  z-index: 1000;
+}
+
+/* Container to center content */
+.nav-container, .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo/Icon on left */
+.nav-icon .logo {
+  height: 40px;
+}
+
+/* Desktop Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+.nav-links a {
+  text-decoration: none;
+  color: lab(19.32% 3.64 1.34); /* boja linkova */
+  /* background: #ffffff; /* boja pozadine linkova */
+  padding: 0.5rem;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+   /*  font-weight: bold;*/
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px hsla(0, 0%, 26%, 0.796);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.nav-links a:hover {
+  background: #f0f0f0;
+    color: hwb(0 26% 73% / 0.8); /* boja linkova pri hoveru */
+    text-decoration: underline; /* podvlačenje linkova pri hoveru */
+}
+
+/* Hamburger Button for Mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Responsive: Show hamburger, hide links */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  body.mobile-menu-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  body.mobile-menu-open .nav-links a {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+}

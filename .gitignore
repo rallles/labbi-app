@@ -1,0 +1,23 @@
+# Editor & System
+.vscode/
+.idea/
+.DS_Store
+
+# Build
+/bin/
+/build/
+/*.exe
+
+# Go
+*.log
+*.out
+
+# Docker
+*.env
+neo4j_data/
+
+*.swp
+*.swo
+
+Thumbs.db
+desktop.ini

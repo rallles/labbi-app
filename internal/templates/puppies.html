@@ -1,0 +1,49 @@
+{{ define "title" }}Welpen | Labbi-App{{ end }}
+
+{{ define "header" }}Unsere Welpen{{ end }}
+{{ define "content" }}
+<div class="puppies-wrapper" style="display:flex; align-items:flex-start; flex-wrap:wrap; gap:20px;">
+  <!-- Textbereich links -->
+  <div class="puppies-intro" style="flex:1 1 300px; min-width:300px;">
+    <h2>Unsere aktuellen Welpen</h2>
+    <p>Unsere Welpen wachsen mitten im Familienleben auf und lernen spielerisch den Alltag kennen. Sie sind bestens sozialisiert und freuen sich darauf, bald neue liebe Familien zu bereichern.</p>
+    <p>Klicken Sie auf ein Bild, um es in voller Größe anzusehen.</p>
+  </div>
+
+  <!-- Bildergalerie rechts -->
+  <div class="puppies-gallery" x-data="{
+      images: [
+      '/static/images/welpe_001_.jpg',
+      '/static/images/welpe_002_.jpg',
+      '/static/images/welpe_003_.jpg',
+      '/static/images/welpe_004_.jpg',
+      '/static/images/welpe_005_.jpg'
+      ],
+      current: 0,
+      show: false,
+      open(i) { this.current = i; this.show = true },
+      close() { this.show = false }
+    }" style="flex:0 0 300px;">
+    <div class="gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:10px;">
+      <template x-for="(img, idx) in images" :key="idx">
+        <img :src="img" alt="Welpe" style="width:100%; border-radius:6px; cursor:pointer;" @click="open(idx)">
+      </template>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox" x-show="show" @click="close()" style="
+        position:fixed; top:0; left:0; right:0; bottom:0;
+        background:rgba(0,0,0,0.85); display:flex;
+        align-items:center; justify-content:center; z-index:1000;
+      ">
+      <span class="close-btn" @click.stop="close()" style="
+          position:absolute; top:20px; right:30px;
+          font-size:2rem; color:white; cursor:pointer; z-index:1001;
+        ">&times;</span>
+      <img :src="images[current]" alt="Welpe Groß" style="max-width:90%; max-height:90%; border-radius:8px;">
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "year" }}2025{{ end }}

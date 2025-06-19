@@ -1,0 +1,66 @@
+{{ define "base.html" }}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}Labbi-App{{ end }}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <link rel="stylesheet" href="/static/css/footer.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+  <!-- Fixed Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="nav-icon">
+        <!-- Platz für Logo/Icon -->
+
+        <a href="/"><img src="/static/images/labbi3.svg" alt="Labbi-App Logo" class="logo" style="border: 5px solid transparent;"></a>
+         <!-- 
+        <span class="hobby-text">... seriöse Hobbyzucht</span>  -->
+      </div>
+      <nav class="nav-links">
+        <a href="/">Startseite</a>
+        <a href="/about">Über uns</a>
+        <a href="/dogs">Unsere Hunde</a>
+        <a href="/puppies">Welpen</a>
+        <a href="/contact">Kontakt</a>
+        <a href="/impressum">Impressum</a>
+      </nav>
+      <!-- Hamburger Menübutton für Mobilgeräte -->
+      <button class="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Sidebar für Desktop verschwindet, über mobile Menü aufgerufen -->
+  <!-- Main Content Wrapper -->
+  <div class="container main-wrapper">
+    <main class="content">
+      {{ block "content" . }}{{ end }}
+    </main>
+  </div>
+
+    <!-- Secondary Footer Navigation -->
+  <footer class="footer-nav">
+    <div class="container">
+      <nav class="footer-links">
+        <a href="/contact">Kontakt</a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.body.classList.toggle('mobile-menu-open');
+    }
+  </script>
+</body>
+</html>
+{{ end }}

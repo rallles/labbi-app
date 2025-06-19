@@ -1,0 +1,37 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4jLabbi
+    environment:
+      - NEO4J_AUTH=neo4j/latuerts
+    ports:
+      - "7474:7474"   # HTTP browser
+      - "7687:7687"   # Bolt (Go access)
+    volumes:
+      - neo4j_data:/data
+    networks:
+      - labbi-net
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: labbi-web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - neo4j
+    networks:
+      - labbi-net
+    env_file:
+      - .env
+    environment:
+      # Override default NEO4J_URI to use service name within Docker network
+      NEO4J_URI: bolt://neo4j:7687
+      SERVER_ADDRESS: "0.0.0.0:8080"
+volumes:
+  neo4j_data:
+
+networks:
+  labbi-net:
+    driver: bridge

@@ -1,0 +1,30 @@
+{{ define "title" }}Über uns | Labbi-App{{ end }}
+
+{{ define "header" }}Über uns{{ end }}
+
+{{ define "content" }}
+<div class="about-wrapper" style="display:flex; flex-wrap:wrap; gap:20px; align-items:start;">
+  <!-- Textbereich links -->
+  <div class="about-content" style="flex:1; min-width:300px;">
+    <h2>Willkommen bei unserer kleinen, liebevollen Labrador-Zucht!</h2>
+    <p>Wir sind eine herzliche Familie mit einer großen Leidenschaft für Hunde. Unsere Zucht betreiben wir mit viel Liebe und Hingabe im kleinen Rahmen – nicht als Massenzucht, sondern als echtes Herzensprojekt.</p>
+    <p>Unsere Labradore wachsen bei uns zu Hause auf, umgeben von Wiesen, Wald und viel Platz zum Toben. Jeder Hund gehört fest zur Familie, bekommt viel Aufmerksamkeit, Zuneigung und Pflege. Die Welpen wachsen in einer sicheren, liebevollen Umgebung auf und werden bestens sozialisiert.</p>
+
+    <div class="highlight-box" style="background-color:#eef6f3; border-left:5px solid #5cb85c; padding:15px 20px; margin:30px 0; border-radius:4px;">
+      <p><strong>Unsere Philosophie:</strong> Liebe, Verantwortung und artgerechte Haltung stehen bei uns an erster Stelle. Jeder Welpe soll mit einem guten Start ins Leben beginnen!</p>
+    </div>
+
+    <p>Für uns steht das Wohlbefinden der Tiere an oberster Stelle. Wir nehmen uns viel Zeit für jeden einzelnen Wurf und begleiten die Kleinen mit großer Sorgfalt, bis sie in ihre neuen Familien ziehen.</p>
+    <p>Wir freuen uns über jede ernstgemeinte Anfrage und laden Sie herzlich ein, uns und unsere Hunde kennenzulernen!</p>
+  </div>
+  <!-- Bildbereich rechts -->
+  <div class="right-image" style="flex:0 0 400px; position:relative;">
+    <img src="/static/images/zucht-hof.jpg" alt="Unser Hof mit Auslauf" style="width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+    <div class="overlay-text" style="position:absolute; bottom:20px; left:20px; right:20px; background-color:rgba(0,0,0,0.6); color:#fff; padding:15px; border-radius:6px; text-align:center; font-size:1rem;">
+      Unser großzügiges Gelände bietet den Hunden Freiheit, Bewegung und Natur pur.
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "year" }}2025{{ end }}

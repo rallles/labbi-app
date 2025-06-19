@@ -1,0 +1,46 @@
+/* Footer Navigation Styles */
+.footer-nav {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #555;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #000;
+}
+.footer-text {
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  padding: 1rem 0;
+  z-index: 999;
+}
+
+/* Damit der Seiteninhalt nicht unter dem Footer verschwindet: */
+.main-wrapper {
+  margin-bottom: 80px; /* etwas größer als die Footer-Höhe */
+}
