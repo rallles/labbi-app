@@ -21,3 +21,17 @@ neo4j_data/
 
 Thumbs.db
 desktop.ini
+# generierte/vertrauliche Dateien
+
+node_modules/
+dist/
+venv/
+__pycache__/
+
+# Docker
+*.tar
+*.pid
+
+# certbot / letsencrypt
+/etc/letsencrypt
+/var/lib/letsencrypt

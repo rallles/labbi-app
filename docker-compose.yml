@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: labbi-web
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"  # <-- expose statt ports, da Reverse Proxy übernimmt
     depends_on:
       - neo4j
     networks:
@@ -26,12 +26,29 @@ services:
     env_file:
       - .env
     environment:
-      # Override default NEO4J_URI to use service name within Docker network
       NEO4J_URI: bolt://neo4j:7687
       SERVER_ADDRESS: "0.0.0.0:8080"
+
+  nginx:
+    image: nginx:latest
+    container_name: labbi-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./internal/public:/var/www/html
+      - ./static:/var/www/static:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - web
+    networks:
+      - labbi-net
+
 volumes:
   neo4j_data:
 
 networks:
   labbi-net:
     driver: bridge
+
