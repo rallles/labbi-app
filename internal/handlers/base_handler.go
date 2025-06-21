@@ -20,8 +20,10 @@ func renderTemplate(w http.ResponseWriter, page string, data interface{}) error 
 
 	// Mögliche Template-Verzeichnisse relativ zu wd
 	dirs := []string{
-		filepath.Join(wd, "templates"),
-		filepath.Join(wd, "internal", "templates"),
+		filepath.Join(wd, "templates"),                           // direkt unter dem Arbeitsverzeichnis
+		filepath.Join(wd, "internal", "templates"),               // direkt unter cwd/internal/templates
+		filepath.Join(filepath.Dir(wd), "templates"),             // eine Ebene höher: Projekt-Root/templates
+		filepath.Join(filepath.Dir(wd), "internal", "templates"), // eine Ebene höher: Projekt-Root/internal/templates
 	}
 
 	var tplDir string
