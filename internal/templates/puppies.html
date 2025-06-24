@@ -1,49 +1,82 @@
-{{ define "title" }}Welpen | Labbi-App{{ end }}
-
-{{ define "header" }}Unsere Welpen{{ end }}
 {{ define "content" }}
-<div class="puppies-wrapper" style="display:flex; align-items:flex-start; flex-wrap:wrap; gap:20px;">
-  <!-- Textbereich links -->
-  <div class="puppies-intro" style="flex:1 1 300px; min-width:300px;">
+
+<div class="puppies-hero">
     <h2>Unsere aktuellen Welpen</h2>
-    <p>Unsere Welpen wachsen mitten im Familienleben auf und lernen spielerisch den Alltag kennen. Sie sind bestens sozialisiert und freuen sich darauf, bald neue liebe Familien zu bereichern.</p>
-    <p>Klicken Sie auf ein Bild, um es in voller Größe anzusehen.</p>
-  </div>
-
-  <!-- Bildergalerie rechts -->
-  <div class="puppies-gallery" x-data="{
-      images: [
-      '/static/images/welpe_001_.jpg',
-      '/static/images/welpe_002_.jpg',
-      '/static/images/welpe_003_.jpg',
-      '/static/images/welpe_004_.jpg',
-      '/static/images/welpe_005_.jpg'
-      ],
-      current: 0,
-      show: false,
-      open(i) { this.current = i; this.show = true },
-      close() { this.show = false }
-    }" style="flex:0 0 300px;">
-    <div class="gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:10px;">
-      <template x-for="(img, idx) in images" :key="idx">
-        <img :src="img" alt="Welpe" style="width:100%; border-radius:6px; cursor:pointer;" @click="open(idx)">
-      </template>
-    </div>
-
-    <!-- Lightbox Overlay -->
-    <div class="lightbox" x-show="show" @click="close()" style="
-        position:fixed; top:0; left:0; right:0; bottom:0;
-        background:rgba(0,0,0,0.85); display:flex;
-        align-items:center; justify-content:center; z-index:1000;
-      ">
-      <span class="close-btn" @click.stop="close()" style="
-          position:absolute; top:20px; right:30px;
-          font-size:2rem; color:white; cursor:pointer; z-index:1001;
-        ">&times;</span>
-      <img :src="images[current]" alt="Welpe Groß" style="max-width:90%; max-height:90%; border-radius:8px;">
-    </div>
-  </div>
+    <p><strong>Geburtsdatum:</strong> 26. Januar 2025<br>
+    <span>Ab sofort suchen wir nach einem passenden Zuhause!</span></p>
+    <p><strong>Farben &amp; Geschlecht:</strong><br>
+        Unsere Welpen gibt es in den Farben Schwarz und Blond – sowohl Rüden als auch Hündinnen sind dabei. Für jeden ist das Richtige dabei!
+    </p>
+    <p><strong>Aufzucht:</strong><br>
+        Unsere Kleinen wachsen gemeinsam mit ihren Eltern, anderen Hunden und weiteren Tieren auf einem großzügigen Grundstück in ländlicher Umgebung auf – ganz ohne Zwingerhaltung. Im täglichen Familienleben erleben sie viele verschiedene Alltagssituationen und sind an zahlreiche Geräusche und Tiere gewöhnt.
+    </p>
+    <p><strong>Gesundheit:</strong><br>
+        Alle Welpen sind selbstverständlich geimpft, gechipt und mehrfach entwurmt. Sie besitzen außerdem einen EU-Heimtierausweis.
+    </p>
+    <p>
+        Wir freuen uns darauf, Sie und Ihre Familie kennenzulernen!<br>
+        Gerne können Sie uns bei Interesse kontaktieren und die Welpen persönlich besuchen.
+    </p>
+    <p style="font-style:italic; margin-top:2em;">
+        Klicken Sie auf ein Bild, um es in voller Größe anzusehen.
+    </p>
 </div>
-{{ end }}
 
-{{ define "year" }}2025{{ end }}
+<!-- Galerie mit Alpine.js Lightbox -->
+<div 
+    class="puppies-gallery" 
+    x-data="{ 
+        images: [
+            '/static/images/welpe_001_.jpg',
+            '/static/images/welpe_002_.jpg',
+            '/static/images/welpe_003_.jpg',
+            '/static/images/welpe_004_.jpg',
+            '/static/images/welpe_005_.jpg',
+            '/static/images/welpe_006_.jpg',
+            '/static/images/welpe_007_.jpg',
+            '/static/images/welpe_008_.jpg',
+            '/static/images/welpe_009_.jpg',
+            '/static/images/welpe_010_.jpg'
+        ], 
+        show: false, 
+        current: 0,
+        next() { this.current = (this.current < this.images.length - 1) ? this.current + 1 : 0 },
+        prev() { this.current = (this.current > 0) ? this.current - 1 : this.images.length - 1 }
+    }"
+>
+    <!-- Bilder untereinander anordnen -->
+    <div class="gallery-vertical">
+        <template x-for="(img, i) in images" :key="i">
+            <img 
+                :src="img" 
+                class="gallery-thumb" 
+                alt="Welpe" 
+                style="display: block; margin-bottom: 1em; cursor: pointer;"
+                @click="current = i; show = true"
+                :style="{ width: '1000px', height: 'auto' }"
+            >
+        </template>
+    </div>
+    
+    <!-- Lightbox über die ganze Seite mit Navigationspfeilen -->
+    <div class="lightbox" 
+        x-show="show" 
+        @click="show = false" 
+        x-transition
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+              background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center;">
+        <span class="close-btn" 
+            @click.stop="show=false" 
+            style="position: absolute; top: 20px; right: 30px; font-size: 40px; color: #fff; cursor: pointer;">&times;</span>
+        <button class="prev-btn" 
+              @click.stop="prev()" 
+              style="position: absolute; left: 20px; font-size: 40px; color: #fff; background: none; border: none; cursor: pointer;">&#8592;</button>
+        <img :src="images[current]" alt="Welpe Groß" 
+            style="display: block; margin: auto; max-width: 90%; max-height: 90%;">
+        <button class="next-btn" 
+              @click.stop="next()" 
+              style="position: absolute; right: 20px; font-size: 40px; color: #fff; background: none; border: none; cursor: pointer;">&#8594;</button>
+    </div>
+</div>
+
+{{ end }}
