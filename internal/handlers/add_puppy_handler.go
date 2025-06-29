@@ -118,37 +118,59 @@ func AddPuppyHandler(w http.ResponseWriter, r *http.Request, driver neo4j.Driver
 func saveUploadedImages(files []*multipart.FileHeader) ([]string, error) {
 	wd, err := os.Getwd()
 	if err != nil {
+		log.Printf("FEHLER: Arbeitsverzeichnis konnte nicht ermittelt werden: %v", err)
 		return nil, err
 	}
-	// Gehe vom Arbeitsverzeichnis (z.B. .../labbi-app/cmd) eine Ebene nach oben zum Projekt-Stammverzeichnis:
+	log.Printf("Arbeitsverzeichnis (os.Getwd): %s", wd)
+
 	projectRoot := filepath.Dir(wd)
 	imageDir := filepath.Join(projectRoot, "static", "images")
+	log.Printf("Projekt-Stammverzeichnis: %s", projectRoot)
+	log.Printf("Bilder-Verzeichnis: %s", imageDir)
+
 	if err := os.MkdirAll(imageDir, os.ModePerm); err != nil {
+		log.Printf("FEHLER: Bilder-Verzeichnis konnte nicht angelegt werden: %v", err)
 		return nil, err
 	}
 
+	log.Printf("Anzahl hochgeladener Dateien: %d", len(files))
+
 	var paths []string
-	for _, fh := range files {
+	for idx, fh := range files {
+		log.Printf("Verarbeite Datei %d: Originalname: %s", idx+1, fh.Filename)
+
 		file, err := fh.Open()
 		if err != nil {
+			log.Printf("FEHLER: Datei %s konnte nicht geöffnet werden: %v", fh.Filename, err)
 			return nil, err
 		}
-		defer file.Close()
 
 		ext := filepath.Ext(fh.Filename)
 		name := fmt.Sprintf("%s_%d%s", uuid.New().String(), time.Now().UnixNano(), ext)
 		target := filepath.Join(imageDir, name)
+		log.Printf("Speichere nach: %s", target)
 
 		out, err := os.Create(target)
 		if err != nil {
+			log.Printf("FEHLER: Datei konnte nicht angelegt werden: %v", err)
+			file.Close()
 			return nil, err
 		}
-		defer out.Close()
 
-		if _, err := io.Copy(out, file); err != nil {
+		written, err := io.Copy(out, file)
+		if err != nil {
+			log.Printf("FEHLER: Datei %s konnte nicht gespeichert werden: %v", name, err)
+			out.Close()
+			file.Close()
 			return nil, err
 		}
+		log.Printf("Datei %s gespeichert (%d Bytes)", name, written)
+
 		paths = append(paths, name)
+
+		// WICHTIG: Dateien gleich schließen (nicht mit defer im Loop)
+		out.Close()
+		file.Close()
 	}
 	return paths, nil
 }
