@@ -1,0 +1,60 @@
+/* Container für alle Welpen-Einträge */
+.puppies-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Einzelner Welpen-Eintrag als Grid: Info links, Bilder rechts */
+.puppy-entry {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+}
+
+/* Textbereich */
+.puppy-info h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+.puppy-info ul {
+  list-style: none;
+  padding: 0;
+}
+.puppy-info li {
+  margin-bottom: 0.5rem;
+}
+
+/* Bilderbereich */
+.puppy-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.puppy-thumb {
+  width: calc(33.333% - 0.5rem);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.puppy-thumb:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Anpassung */
+@media (max-width: 768px) {
+  .puppy-entry {
+    grid-template-columns: 1fr;
+  }
+  .puppy-thumb {
+    width: 48%;
+  }
+}

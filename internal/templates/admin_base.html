@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}Admin | Labbi-Welpen{{ end }}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
+  <link rel="stylesheet" href="/static/css/add_puppy.css">
+</head>
+<body>
+  <!-- Header mit horizontaler, zentrierter Navigation -->
+  <header class="admin-header-bar">
+    <nav class="admin-nav">
+      <ul>
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/puppies/add">Welpen anlegen</a></li>
+        <li><a href="/admin/puppies">alle Welpen</a></li>
+        <li><a href="/">Zur Hauptseite</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="admin-content">
+    <h1>{{ block "header" . }}Admin-Bereich{{ end }}</h1>
+    <section>
+      {{ block "content" . }}{{ end }}
+    </section>
+  </main>
+  <footer class="admin-footer">
+    &copy; {{ block "year" . }}2025{{ end }} Labbi-App
+  </footer>
+</body>
+</html>

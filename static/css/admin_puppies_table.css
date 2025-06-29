@@ -1,0 +1,135 @@
+/* Allgemeine Stile für die Admin-Seite zur Welpenverwaltung */
+/* Tabelle für Admin: Welpen verwalten */
+.admin-puppies-table {             /* Selektor: Tabelle für die Verwaltung von Welpen */
+  width: 100%;                     /* Setzt die Gesamtbreite der Tabelle auf 100% der umgebenden Breite */
+  border-collapse: collapse;       /* Entfernt Abstände zwischen Zellen, sodass angrenzende Ränder zusammengeführt werden */
+  margin: 2rem 0;                  /* Fügt oben und unten einen Abstand von 2rem hinzu, keine horizontalen Ränder */
+  /*display: grid;*/               /* (Auskommentiert) Könnte das Layout als Grid definieren */
+  grid-template-columns: max-content 1fr; /* Definiert zwei Spalten: die erste passt sich dem Inhalt an, die zweite füllt den Rest */
+  gap: 0.3em 1em;                  /* Legt den vertikalen Abstand (0.3em) und horizontalen Abstand (1em) zwischen Elementen fest */
+}
+
+.admin-puppies-table th,
+.admin-puppies-table td {              /* Selektoren: Tabellenkopf und Tabellenzellen */
+  border: 1px solid hwb(0 41% 32%);  /* Definiert einen 1px breiten, durchgezogenen Rand in der HWB-Farbe */
+  padding: 0.75rem;                    /* Fügt einen Innenabstand von 0.75rem in allen Richtungen hinzu */
+  vertical-align: top;                 /* Richtet den Inhalt der Zellen oben aus */
+}
+
+.admin-puppies-table th {             /* Selektor: Tabellenkopf */
+  background-color: #f4f4f4;        /* Setzt eine helle Hintergrundfarbe für die Kopfzellen */
+  font-weight: 600;                   /* Macht den Text in Kopfzellen fett (Gewicht 600) */
+  text-align: left;                   /* Richtet den Text in den Kopfzellen linksbündig aus */
+}
+
+/*-------------------------------------------------------------------------------------------------*/
+/* Definition List (Eigenschaften) Styling */
+.admin-puppies-table dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25em 1em;
+  margin: 0;
+  padding: 1rem 1.5rem;
+  background: hsl(0, 4%, 79%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  max-width: 300px;
+}
+
+.admin-puppies-table dt {
+  font-size: 1rem;
+  padding: 0.4em 0.5em 0.4em 0;
+  color: #555;
+  font-weight: 600;
+  text-align: right;
+  background: #f5f6fa;
+  border-radius: 6px 0 0 6px;
+}
+
+.admin-puppies-table dd {
+  margin: 0;
+  padding: 0.4em 0.5em;
+  color: #223;
+  background: #fafdff;
+  border-radius: 0 6px 6px 0;
+  font-weight: 400;
+  text-align: left;
+  align-self: center;
+}
+/*-------------------------------------------------------------------------------------------------*/
+
+/* Bilderbereich */
+.admin-puppy-images {          /* Selektor: Container für Welpenbilder */
+  display: flex;              /* Verwendet Flexbox zur Anordnung der Bilder */
+  flex-wrap: wrap;            /* Ermöglicht den Zeilenumbruch, falls nicht alle Bilder in eine Zeile passen */
+  gap: 0.5rem;                /* Fügt einen gleichmäßigen Abstand von 0.5rem zwischen den Bildern hinzu */
+}
+.admin-puppy-images .admin-thumb { /* Selektor: Einzelne Thumbnail-Bilder */
+  width: 60px;                    /* Setzt die Breite jedes Bildes auf 60px */
+  height: 60px;                   /* Setzt die Höhe jedes Bildes auf 60px */
+  object-fit: cover;              /* Skaliert das Bild, sodass es den Container vollständig ausfüllt (Zuschneiden möglich) */
+  border-radius: 4px;             /* Rundet die Ecken der Bilder mit einem Radius von 4px ab */
+  border: 1px solid #ccc;         /* Fügt einen 1px breiten, hellgrauen Rand hinzu */
+  cursor: pointer;                /* Ändert den Mauszeiger beim Überfahren in einen Pointer (zeigt Klickbarkeit) */
+  transition: transform 0.2s;     /* Definiert eine Übergangsanimation für Transformationen über 0.2 Sekunden */
+}
+.admin-puppy-images .admin-thumb:hover {  /* Hover-Zustand für Thumbnail-Bilder */
+  transform: scale(1.1);        /* Vergrößert das Bild um 10% beim Überfahren mit der Maus */
+}
+
+/* Lösch-Button */
+.btn-delete {                /* Selektor: Button zum Löschen */
+  padding: 0.5rem 1rem;       /* Fügt oben/unten 0.5rem und links/rechts 1rem Innenabstand hinzu */
+  background-color: #c0392b;  /* Setzt die Hintergrundfarbe auf einen roten Farbton */
+  color: #fff;               /* Setzt die Textfarbe auf Weiß */
+  border: none;              /* Entfernt den Standardrahmen */
+  border-radius: 4px;        /* Rundet die Ecken des Buttons mit einem Radius von 4px ab */
+  font-size: 0.9rem;         /* Setzt die Schriftgröße auf 0.9rem */
+  cursor: pointer;           /* Ändert den Mauszeiger beim Überfahren zu einem Pointer */
+  transition: background-color 0.2s; /* Fügt eine Übergangsanimation für die Hintergrundfarbe über 0.2 Sekunden hinzu */
+}
+.btn-delete:hover {         /* Hover-Zustand für den Löschen-Button */
+  background-color: #922b21;  /* Ändert die Hintergrundfarbe zu einem dunkleren Rot beim Überfahren */
+}
+
+/* Responsive Anpassung */
+@media (max-width: 768px) {  /* Media Query: Aktiviert bei Bildschirmen, die kleiner als 768px sind */
+  .admin-puppies-table thead {
+    display: none;          /* Blendet den Tabellenkopf aus, um Platz zu sparen */
+  }
+  .admin-puppies-table, .admin-puppies-table tbody, .admin-puppies-table tr, .admin-puppies-table td {
+    display: block;         /* Zeigt die Elemente als Blockelemente an, um ein responsives Layout zu ermöglichen */
+    width: 100%;            /* Setzt die Breite für alle Elemente auf 100% */
+  }
+  .admin-puppies-table tr {
+    margin-bottom: 1.5rem;  /* Fügt einen Abstand zwischen den Tabellenzeilen ein */
+  }
+  .admin-puppies-table td {
+    text-align: right;      /* Richtet den Text in den Zellen rechtsbündig aus */
+    padding-left: 50%;      /* Fügt links einen Innenabstand von 50% hinzu, um Platz für das Pseudoelement zu schaffen */
+    position: relative;     /* Setzt die Positionierung auf relativ, wodurch absolute Positionierung im ::before möglich wird */
+  }
+  .admin-puppies-table td::before {
+    content: attr(data-label);    /* Fügt den Text aus dem data-label Attribut vor dem Zelleninhalt ein */
+    position: absolute;           /* Positioniert das erzeugte Element absolut in Bezug auf die Zelle */
+    left: 0;                      /* Setzt den linken Abstand des Pseudoelements auf 0 */
+    width: 45%;                   /* Definiert eine Breite von 45% für das Pseudoelement */
+    padding-left: 0.75rem;        /* Fügt einen zusätzlichen Innenabstand von 0.75rem auf der linken Seite hinzu */
+    font-weight: 600;             /* Macht den Text im Pseudoelement fett (Gewicht 600) */
+    text-align: left;             /* Richtet den Text im Pseudoelement linksbündig aus */
+  }
+}
+
+.btn-edit {
+  padding: 0.5rem 1rem;
+  background-color: #286adb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.btn-edit:hover {
+  background-color: #174fa3;
+}

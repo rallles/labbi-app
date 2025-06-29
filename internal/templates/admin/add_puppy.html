@@ -1,0 +1,109 @@
+{{ define "title" }}Welpen anlegen | Labbi-Welpen Admin{{ end }}
+
+{{ define "header" }}Neuen Welpen anlegen{{ end }}
+
+{{ define "content" }}
+<div class="admin-form-container">
+  <form action="/admin/puppies/add" method="post" enctype="multipart/form-data" class="admin-form">
+    
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Name des Welpen" required>
+    </div>
+
+    <!-- Geburtsdatum -->
+    <div class="form-group">
+      <label for="birthdate">Geburtsdatum:</label>
+      <input type="date" id="birthdate" name="geburtsdatum" required>
+    </div>
+
+    <!-- Geschlecht -->
+    <div class="form-group">
+      <label>Geschlecht:</label>
+      <label><input type="radio" name="geschlecht" value="männlich" required> männlich</label>
+      <label><input type="radio" name="geschlecht" value="weiblich"> weiblich</label>
+    </div>
+
+    <!-- Farbe -->
+    <div class="form-group">
+      <label for="farbe">Fellfarbe:</label>
+      <select id="farbe" name="farbe" required>
+        <option value="">Bitte wählen</option>
+        <option value="schwarz">schwarz</option>
+        <option value="gelb">gelb</option>
+        <option value="braun">braun</option>
+        <option value="fox red">fox red</option>
+        <option value="silber">silber</option>
+        <option value="charcoal">charcoal</option>
+        <option value="champagner">champagner</option>
+      </select>
+    </div>
+
+    <!-- Gewicht -->
+    <div class="form-group">
+      <label for="gewicht">Gewicht (kg):</label>
+      <input type="number" step="0.1" id="gewicht" name="gewicht" placeholder="z. B. 4.5" required>
+    </div>
+
+    <!-- Charakter -->
+    <div class="form-group">
+      <label for="charakter">Charakter:</label>
+      <textarea id="charakter" name="charakter" rows="2" placeholder="z. B. verspielt, ruhig, energiegeladen" required></textarea>
+    </div>
+
+    <!-- Impfstatus -->
+    <div class="form-group">
+      <label for="geimpft">Geimpft:</label>
+      <select id="geimpft" name="geimpft" required>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <!-- Gechippt -->
+    <div class="form-group">
+      <label for="gechippt">Gechippt:</label>
+      <select id="gechippt" name="gechippt" required>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <!-- Gechippt -->
+    <div class="form-group">
+      <label for="entwurmung">Entwurmung erfolgt:</label>
+      <select id="entwurmung" name="entwurmung" required>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+    
+    <!-- Eltern -->
+    <div class="form-group">
+      <label for="eltern">Eltern:</label>
+      <label><input type="checkbox" name="eltern" value="Gandalf"> Gandalf</label>
+      <label><input type="checkbox" name="eltern" value="Anna"> Anna</label>
+      <label><input type="checkbox" name="eltern" value="Brina"> Brina</label>
+    </div>
+
+    <!-- Notizen -->
+    <div class="form-group">
+      <label for="notizen">Besondere Notizen:</label>
+      <textarea id="notizen" name="notizen" rows="3" placeholder="z. B. Futterunverträglichkeit, Lieblingsspielzeug..."></textarea>
+    </div>
+
+    <!-- Bilder -->
+    <div class="form-group">
+      <label for="images">Bilder (mehrere auswählen):</label>
+      <input type="file" id="images" name="images" accept="image/*" multiple required>
+    </div>
+
+    <!-- Absenden -->
+    <button type="submit" class="btn-submit">Welpen anlegen</button>
+  </form>
+</div>
+
+{{ end }}
+
+{{ define "year" }}2025{{ end }}

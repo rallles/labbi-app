@@ -1,0 +1,29 @@
+{{ define "title" }}Admin-Dashboard | Labbi-App{{ end }}
+
+{{ define "header" }}Admin-Bereich{{ end }}
+
+{{ define "content" }}
+<div style="max-width: 750px; margin: 0 auto;">
+
+  {{ if .SuccessMessage }}
+    <div style="background:#e8f6ea; color:#21784c; border-left:5px solid #52b974; padding:1em 1.3em; border-radius:6px; margin-bottom:1.5em; font-weight:500;">
+      {{ .SuccessMessage }}
+    </div>
+  {{ end }}
+
+  <h2>Willkommen im Admin-Dashboard!</h2>
+
+  <div style="margin-bottom:2em;">
+    <a href="/admin/puppies/add" class="btn" style="background:#337ab7; color:#fff; padding:0.7em 1.3em; border-radius:5px; text-decoration:none;">Neuen Welpen anlegen</a>
+    <a href="/admin/puppies" class="btn" style="background:#3c8d41; color:#fff; padding:0.7em 1.3em; border-radius:5px; text-decoration:none; margin-left:0.8em;">Welpen verwalten</a>
+  </div>
+
+  <ul style="line-height:1.7;">
+    <li>Im Adminbereich kannst du neue Welpen anlegen, vorhandene bearbeiten oder löschen.</li>
+    <li>Außerdem kannst du Bilder, Eltern und alle weiteren Infos pflegen.</li>
+    <li>Links findest du die Navigation zu den einzelnen Bereichen.</li>
+  </ul>
+</div>
+{{ end }}
+
+{{ define "year" }}2025{{ end }}

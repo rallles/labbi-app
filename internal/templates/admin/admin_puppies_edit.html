@@ -1,0 +1,62 @@
+{{ define "title" }}Welpe bearbeiten | Labbi-App Admin{{ end }}
+
+{{ define "content" }}
+<link rel="stylesheet" href="/static/css/admin_puppy_edit.css">
+
+<h2>Welpe bearbeiten</h2>
+<form class="admin-form-container" method="post" action="/admin/puppies/edit">
+  <input type="hidden" name="id" value="{{ .ID }}">
+  <table class="admin-puppies-edit" style="width: 768px;">
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" value="{{ .Name }}"></td>
+    </tr>
+    <tr>
+      <td>Geburtsdatum:</td>
+      <td><input type="date" name="geburtsdatum" value="{{ .Geburtsdatum }}"></td>
+    </tr>
+    <tr>
+      <td>Geschlecht:</td>
+      <td><input type="text" name="geschlecht" value="{{ .Geschlecht }}"></td>
+    </tr>
+    <tr>
+      <td>Fellfarbe:</td>
+      <td><input type="text" name="farbe" value="{{ .Farbe }}"></td>
+    </tr>
+    <tr>
+      <td>Gewicht (kg):</td>
+      <td><input type="number" name="gewicht" step="0.01" value="{{ .Gewicht }}"></td>
+    </tr>
+    <tr>
+      <td>Charakter:</td>
+      <td><input type="text" name="charakter" value="{{ .Charakter }}"></td>
+    </tr>
+    <tr>
+      <td>Geimpft:</td>
+      <td><input type="checkbox" name="geimpft" {{ if .Geimpft }}checked{{ end }}></td>
+    </tr>
+    <tr>
+      <td>Gechippt:</td>
+      <td><input type="checkbox" name="gechippt" {{ if .Gechippt }}checked{{ end }}></td>
+    </tr>
+    <tr>
+      <td>Entwurmt:</td>
+      <td><input type="checkbox" name="entwurmt" {{ if .Entwurmt }}checked{{ end }}></td>
+    </tr>
+    <tr>
+      <td>Eltern </td>
+      <td><input type="text" name="eltern" value="{{ join .Eltern ", " }}">(Komma getrennt):</td>
+    </tr>
+    <tr>
+    <td>Notizen:</td>
+    <td><textarea name="notizen" style="width: 300px; height: 100px;">{{ .Notizen }}</textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: right;">
+        <button type="submit">Speichern</button>
+        <a href="/admin/puppies">Abbrechen</a>
+      </td>
+    </tr>
+  </table>
+</form>
+{{ end }}

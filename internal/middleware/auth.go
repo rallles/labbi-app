@@ -4,15 +4,15 @@ import (
 	"net/http"
 )
 
-func AuthMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		username, password, ok := r.BasicAuth()
-		if ok && username == "admin" && password == "latuerts" {
-			next.ServeHTTP(w, r)
+// AuthMiddleware schützt Admin-Routen mit Basic Auth
+func AuthMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		user, pass, ok := r.BasicAuth()
+		if !ok || user != "admin" || pass != "secret" {
+			w.Header().Set("WWW-Authenticate", `Basic realm="Admin Bereich"`)
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
-		w.Header().Set("WWW-Authenticate", `Basic realm="Admin Area"`)
-		w.WriteHeader(http.StatusUnauthorized)
-		w.Write([]byte("Nicht autorisiert"))
-	})
+		next(w, r)
+	}
 }
