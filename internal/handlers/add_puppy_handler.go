@@ -120,7 +120,9 @@ func saveUploadedImages(files []*multipart.FileHeader) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	imageDir := filepath.Join(wd, "static", "images")
+	// Gehe vom Arbeitsverzeichnis (z.B. .../labbi-app/cmd) eine Ebene nach oben zum Projekt-Stammverzeichnis:
+	projectRoot := filepath.Dir(wd)
+	imageDir := filepath.Join(projectRoot, "static", "images")
 	if err := os.MkdirAll(imageDir, os.ModePerm); err != nil {
 		return nil, err
 	}
