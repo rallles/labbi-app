@@ -1,31 +1,74 @@
 {{ define "title" }}Startseite | Labbi-Welpen{{ end }}
 
-{{ define "header" }}Herzlich Willkommen bei Labbi-App!{{ end }}
+{{ define "header" }}Herzlich Willkommen bei Labbi-Welpen.de!{{ end }}
 
 {{ define "content" }}
-<div>
-    <h2>Willkommen bei unserer Labrador-Hobbyzucht!</h2>
-    <p>
-        Labbi-App ist dein zuverlässiger Begleiter, wenn es um liebevolle und verantwortungsvolle Labradorzucht geht.
+  <style>
+    .werte-beschreibungen {
+      margin: 0 0 1.8em 0.2em;
+      padding: 0;
+    }
+    .werte-beschreibungen span {
+      display: block;
+      margin-bottom: 0.1em;
+      color: hsl(140, 88%, 20%);
+      font-weight: 500;
+    }
+  </style>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;">
+    <!-- Linke Seite: Text -->
+    <div style="flex: 1 1 380px; min-width: 300px;">
+      <h2>Willkommen bei unserer familiären Labradorzucht!</h2>
+      <p>
+        ... wenn es um liebevolle und verantwortungsvolle Labradorzucht geht.<br>
         Unsere Hunde wachsen in familiärer Atmosphäre auf und genießen viel Platz und Aufmerksamkeit.
-    </p>
-    <section>
+      </p>
+      <section>
         <h3>Unsere Werte</h3>
         <ul>
-            <li>Liebevolle Aufzucht</li>
-            <li>Artgerechte Haltung</li>
-            <li>Hohe Qualitätsstandards</li>
-            <li>Familienfreundlich und sozialisiert</li>
+          <li>Liebevolle Aufzucht</li>
+          <li>Artgerechte Haltung</li>
+          <li>Hohe Qualitätsstandards</li>
+          <li>Familienfreundlich und sozialisiert</li>
         </ul>
-    </section>
-    <section>
-        <h3>Besuche uns gerne</h3>
+      </section>
+      <div class="werte-beschreibungen">
+        <span><strong>Verantwortung</strong>: weil wir jedes Hundeleben ernst nehmen</span>
+        <span><strong>Herzlichkeit</strong>: weil Hunde nicht nur gezüchtet, sondern geliebt werden</span>
+        <span><strong>Ehrlichkeit</strong>: weil wir nichts versprechen, was wir nicht halten</span>
+        <span><strong>Begleitung</strong>: weil wir auch nach dem Auszug ansprechbar bleiben</span>
+        <span><strong>Verbindung</strong>: weil bei uns Mensch und Tier nicht getrennt gedacht werden</span>
+      </div>
+    </div>
+
+  <!-- Rechte Seite: Bild -->
+  <div style="flex: 0 0 120px; min-width: 260px; text-align:center; align-self: flex-start;">
+    <img src="/static/images/labbi4.svg"
+         alt="Labrador-Welpen"
+         style="max-width:320px; width:100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); margin-top:10px;">
+  </div>
+
+</div>
+
+    <p></p>
+    <div class="highlight-box" style="background-color:#eef6f3; border-left:5px solid #5cb85c; padding:15px 20px; margin:30px 0; border-radius:4px;">
+
+        Unsere Zucht ist nicht nur ein Geschäft, sondern eine Herzensangelegenheit. Wir legen großen Wert auf die Gesundheit und das Wohlbefinden unserer Hunde.
+        Jedes Tier wird mit viel Liebe und Hingabe aufgezogen, um sicherzustellen, dass es in ein neues Zuhause kommt, das es verdient.
+    </div>
+        <section>
+        <h3>Wir freuen uns auf Ihren Besuch</h3>
         <p>
-            Auf unserer Webseite findest du alles rund um unsere Hunde, Welpen und unsere Philosophie.
-            Kontaktiere uns jederzeit für einen persönlichen Besuch!
+            Auf unserer Webseite findest du alles rund um unsere Hunde, Welpen und unsere Philosophie.<br>
+            <p> </p>
+            Wenn Sie gerade überlegen, ob ein Labrador zu Ihnen passt, oder wenn dieser Wunsch Sie schon seit langem nicht loslässt, <br>
+            laden wir Sie herzlich ein, sich hier umzuschauen.<br>
+            <p></p>
+            Kontaktiere uns jederzeit für einen persönlichen Besuch! 📞 Telefon: +49 (0)155 10337491
         </p>
         <div style="text-align: center;">
-            <img src="/static/images/tittel.jpg" width="1000" alt="Tittel">
+            <img src="/static/images/tittel.jpg" width="1000" alt="Welpen auf der Wiese" style="border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); float: left;">
         </div>
     </section>
 </div>

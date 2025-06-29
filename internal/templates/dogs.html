@@ -1,4 +1,4 @@
-{{ define "title" }}Unsere Hunde | Labbi-App{{ end }}
+{{ define "title" }}Unsere Hunde | Labbi-Welpen{{ end }}
 
 {{ define "header" }}Unsere Hunde{{ end }}
 
@@ -12,7 +12,7 @@
     <div class="dog-content" style="flex:1 1 300px;">
       <h2>Gandalf</h2>
       <p><strong>Rolle:</strong> Big Boss und Alphatier unserer Zucht.</p>
-      <p><strong>Charakter:</strong> Ruhig, selbstbewusst und sehr beschützend. Gandalf leitet unsere Hundegruppe mit sanfter Pfote.</p>
+      <p><strong>Wesen:</strong> Ruhig, aufmerksam und sou­ve­rän beschützend. Gandalf leitet unsere Hundegruppe mit sanfter Pfote.</p>
       <p><strong>Lieblingsbeschäftigung:</strong> Lange Spaziergänge im Wald und Apportieren.</p>
     </div>
   </div>
@@ -25,7 +25,7 @@
     <div class="dog-content" style="flex:1 1 300px;">
       <h2>Anna</h2>
       <p><strong>Rolle:</strong> Sanfte Mutter unserer Welpen.</p>
-      <p><strong>Charakter:</strong> Liebevoll, geduldig und immer fürsorglich gegenüber Jung und Alt.</p>
+      <p><strong>Wesen:</strong> Liebevoll, geduldig und fürsorglich gegenüber Jung und Alt.</p>
       <p><strong>Lieblingsbeschäftigung:</strong> Kuschelstunden und Suchspiele im Garten.</p>
     </div>
   </div>
@@ -38,11 +38,37 @@
     <div class="dog-content" style="flex:1 1 300px;">
       <h2>Brina</h2>
       <p><strong>Rolle:</strong> Energiegeladene Sportskanone.</p>
-      <p><strong>Charakter:</strong> Lebhaft, verspielt und immer für ein Abenteuer zu haben.</p>
-      <p><strong>Lieblingsbeschäftigung:</strong> Agility-Training und Bällchen holen.</p>
+      <p><strong>Wesen:</strong> Lebhaft, verspielt und immer für ein Abenteuer zu haben.</p>
+      <p><strong>Lieblingsbeschäftigung:</strong> Agility-Training und Ballspiele.</p>
     </div>
   </div>
 </div>
+<!-- Modal für Großbildanzeige -->
+<div id="dog-image-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.75); align-items:center; justify-content:center;">
+  <img id="dog-image-modal-img" src="" alt="Großansicht" style="max-width:90vw; max-height:90vh; box-shadow:0 0 32px #000; border-radius:12px;">
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Alle Hundebilder markieren (hier: alle dog-image img)
+  document.querySelectorAll('.dog-image img').forEach(function(img) {
+    img.style.cursor = "zoom-in";
+    img.addEventListener('click', function() {
+      var modal = document.getElementById('dog-image-modal');
+      var modalImg = document.getElementById('dog-image-modal-img');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt + " Groß";
+      modal.style.display = 'flex';
+    });
+  });
+  // Modal schließt sich beim Klicken außerhalb des Bildes oder auf das Bild
+  document.getElementById('dog-image-modal').addEventListener('click', function(e) {
+    if (e.target === this || e.target === document.getElementById('dog-image-modal-img')) {
+      this.style.display = 'none';
+      document.getElementById('dog-image-modal-img').src = "";
+    }
+  });
+});
+</script>
 {{ end }}
 
 {{ define "year" }}2025{{ end }}
